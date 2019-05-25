@@ -1,1 +1,44 @@
-
+//基于数组实现栈数据结构（固定长度的数据，不支持动态扩容，数组动态扩容要移动原数组中的元素）
+public class BaseArrayImplStack<T>{
+  //数组
+  private Object[] items;
+  
+  //栈中元素的个数
+  private Integer count;
+  
+  //栈的大小
+  private Integer total;
+  
+  /**
+  * 实例化一个定长的栈数据结构
+  */
+  public BaseArrayImplStack(Integer total){
+    this.items = new Object[total];
+    this.total = total;
+    this.count = 0;
+  }
+  
+  /**
+  * 入栈操作
+  如果栈中元素已满，返回false。入栈失败
+  如果未满。在count位置插入新元素
+  */
+  public boolean push(T element){
+    if(count == total) return false;
+    items[count] = element;
+    count++;
+    return true;
+  }
+  
+  /**
+  * 出战操作
+  * 如果栈为空，返回null；否则，返回栈顶数据（即数据最后一个元素，数组长度减一）
+  */
+  public T pop(){
+    if(count == 0) return null;
+    T temp = items[count - 1];
+    count--;
+    return temp;
+  }
+   
+}
